@@ -5,6 +5,7 @@ from typing_extensions import TypedDict
 
 
 class AgentState(TypedDict):
+    unique_id: str
     repo_url: str
     local_path: str
     file_tree: str

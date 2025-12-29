@@ -72,7 +72,7 @@ async def websocket_endpoint(websocket: WebSocket):
                         )
 
     except WebSocketDisconnect:
-        print("Client disconnected")
+        pass
     except Exception as e:
         try:
             if websocket.application_state == WebSocketState.CONNECTED:

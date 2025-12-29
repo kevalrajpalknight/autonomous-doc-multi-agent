@@ -18,7 +18,7 @@ export function InputSection({ onGenerate, isLoading }) {
         <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl p-8 shadow-2xl">
           {/* Header */}
           <div className="flex items-center gap-4 mb-8">
-            <div className="p-4 rounded-full bg-gradient-to-br from-blue-500 to-purple-500">
+            <div className="p-4 rounded-full bg-black">
               <Github size={32} className="text-white" />
             </div>
             <div>
@@ -48,7 +48,7 @@ export function InputSection({ onGenerate, isLoading }) {
             <button
               type="submit"
               disabled={isLoading || !url.trim()}
-              className="w-full py-3 px-6 rounded-xl font-semibold text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:shadow-lg hover:scale-105 active:scale-95"
+              className="w-full py-3 px-6 rounded-xl font-semibold text-white bg-green-600 hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:shadow-lg hover:scale-105 active:scale-95"
             >
               {isLoading ? (
                 <div className="flex items-center justify-center gap-2">

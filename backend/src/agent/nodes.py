@@ -28,6 +28,14 @@ model = ChatOpenAI(
 )
 
 
+def _generate_readme_file(content: str, target_dir: str) -> str:
+    """Helper function to write README.md to the target directory."""
+    readme_path = os.path.join(target_dir, "README.md")
+    with open(readme_path, "w", encoding="utf-8") as f:
+        f.write(content)
+    return readme_path
+
+
 def extract_json_list(text: str) -> List[str]:
     """
     Robustly extracts a JSON list from a string that might contain
@@ -64,10 +72,10 @@ def cloner_node(state: AgentState) -> Dict[str, Any]:
 
     # Define the target path
     base_dir = os.path.join("data")
-    target_path = os.path.abspath(os.path.join(base_dir, folder_name))
+    target_path = os.path.abspath(os.path.join(base_dir, unique_id, folder_name))
 
     # Ensure the base directory exists
-    os.makedirs(base_dir, exist_ok=True)
+    os.makedirs(os.path.join(base_dir, unique_id), exist_ok=True)
 
     try:
         # Perform the shallow clone
@@ -77,7 +85,7 @@ def cloner_node(state: AgentState) -> Dict[str, Any]:
         logs.append("Clone successful.")
 
         # Update and return the state
-        return {"local_path": target_path, "logs": logs}
+        return {"local_path": target_path, "logs": logs, "unique_id": unique_id}
 
     except Exception as e:
         error_msg = f"Failed to clone repository: {str(e)}"
@@ -126,7 +134,6 @@ def manager_node(state: AgentState) -> Dict[str, Any]:
     prompt = _get_file_selection_prompt(file_tree_str)
 
     try:
-        print("Model: ", model)
         # LLM call
         logs.append(f"Step: Consulting {MODEL_NAME} for file selection...")
         messages = [
@@ -245,8 +252,11 @@ def writer_node(state: Dict[str, Any]) -> Dict[str, Any]:
         response = model.invoke(messages)
 
         final_readme = response.content
+        unique_id = state.get("unique_id", "default_id")
+        base_dir = os.path.join("data")
+        target_path = os.path.abspath(os.path.join(base_dir, unique_id))
+        _generate_readme_file(final_readme, target_path)
         logs.append("Writer Node: Successfully generated README.md.")
-
         return {"final_report": final_readme, "logs": logs}
 
     except Exception as e:
