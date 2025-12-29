@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    @apply transition-colors duration-200;
+}
+
+body {
+    @apply bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950;
+}

@@ -1,0 +1,25 @@
+{
+    "name": "autonomous-doc-agent",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-markdown": "^8.0.7",
+        "lucide-react": "^0.263.1",
+        "clsx": "^2.0.0",
+        "tailwind-merge": "^2.2.0"
+    },
+    "devDependencies": {
+        "tailwindcss": "^3.3.5",
+        "postcss": "^8.4.31",
+        "autoprefixer": "^10.4.16",
+        "@vitejs/plugin-react": "^4.1.1",
+        "vite": "^5.0.2"
+    },
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+    }
+}
