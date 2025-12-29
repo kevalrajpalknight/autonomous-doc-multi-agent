@@ -232,3 +232,4 @@ dist-ssr
 *.sln
 *.sw?
 .python-version
+backend/data/**

@@ -10,7 +10,7 @@ The application is designed with a clear separation of concerns between the fron
 
 2.  **Backend**: A Python-based backend built with FastAPI serves as the main hub. It manages a Celery task queue with a Redis broker to handle long-running documentation jobs. This architecture allows for parallel processing of repository files, significantly reducing the time required to generate documentation.
 
-3.  **AI Core**: The heart of the project is an "AI Agent" built with LangGraph. The agent performs the following steps:
+3.  **AI Core**: The heart of the project is an "AI Agent" built with LangGraph. The agents performs the following steps:
 
     - Clones the target GitHub repository.
     - Recursively analyzes the file structure.
